@@ -61,4 +61,4 @@ jobs:
           upload_url: ${{ env.upload_url }}
           asset_path: ./README.md
           asset_name: README.md
-          asset_content_type: application/octet-stream
+          asset_content_type: application/text-markdown
