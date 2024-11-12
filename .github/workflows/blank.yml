@@ -40,16 +40,16 @@ jobs:
         id: check_release
         run: |
           echo "Checking if release for tag ${{ github.ref_name }} already exists..."
-          response=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ github.ref_name }})
+          response=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token ${{ secrets.SECRET_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ github.ref_name }})
           if [ "$response" == "200" ]; then
             echo "Release for tag ${{ github.ref_name }} already exists."
             echo "::set-output name=exists::true"
-            release_info=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ github.ref_name }})
+            release_info=$(curl -s -H "Authorization: token ${{ secrets.SECRET_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ github.ref_name }})
             upload_url=$(echo "$release_info" | jq -r '.upload_url' | sed 's/{.*}//')  # Remove template part
-            echo "::set-output name=upload_url::$upload_url"
+            echo "upload_url=$upload_url" >> $GITHUB_ENV
           else
             echo "Release for tag ${{ github.ref_name }} does not exist."
-            echo "::set-output name=exists::false"
+            echo "exists=false" >> $GITHUB_ENV
           fi
           
       - name: Upload Release Asset
