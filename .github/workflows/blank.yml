@@ -50,11 +50,11 @@ jobs:
           prerelease: false
           
       - name: Upload Release Asset
-            uses: actions/upload-release-asset@v2.0.0
-            env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            with:
-              upload_url: ${{ steps.create_release.outputs.upload_url }}
-              asset_path: ./README.md
-              asset_name: ${{ github.ref_name }}
-              asset_content_type: application/octet-stream
+          uses: actions/upload-release-asset@v2.0.0
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: ./README.md
+            asset_name: ${{ github.ref_name }}
+            asset_content_type: application/octet-stream
