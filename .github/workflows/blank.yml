@@ -62,4 +62,4 @@ jobs:
           asset_path: ./README.md
           name: ${{ github.ref_name }}
           asset_name: README.md
-          asset_content_type: application/text-markdown
+          asset_content_type: application/octet-stream
