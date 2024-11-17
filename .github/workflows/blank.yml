@@ -67,4 +67,4 @@ jobs:
           -H "Authorization: token ${GITHUB_TOKEN}" \
           -H "Content-Type: application/zip" \
           -T "${ASSET_PATH}" \
-          "${ASSET_URL}"
+          "${upload_url}"
